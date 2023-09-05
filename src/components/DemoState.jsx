@@ -20,14 +20,26 @@ export default function DemoState() {
     // const handleDecrease = () => {
     //     setCount(count-1)
     // }
+
+    // Bài tập
+    const [ flag, setFlag ] = useState(true);
+    // console.log(flag);
+    const handleDisplay = () => {
+        setFlag(!flag)
+    }
     return (
         <>
-            <p>{ name }</p>
+            {/* <p>{ name }</p>
             <p>{ count }</p>
             <button onClick={ () => setCount(count + 1) }>Increase</button>
             <button onClick={ () => setCount(count - 1) }>Decrease</button>
-            <button onClick={ () => setName('Bùi Văn Phi') }>Đổi tên</button>
-            <div>DemoState</div>
+            <button onClick={ () => setName('Bùi Văn Phi') }>Đổi tên</button> */}
+            <div>
+                { flag && 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Adipisci officiis dolore possimus tempora culpa reiciendis nobis unde, tenetur esse quos qui magnam, ab architecto fuga dolor illum sed aliquam quae!' }
+            </div>
+            <button className='py-2 px-4 bg-red-400 text-white my-2' onClick={ handleDisplay }>
+                { flag ? 'Hide' : 'Show' }
+            </button>
         </>
     )
 }
