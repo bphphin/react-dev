@@ -1,28 +1,37 @@
 import React from 'react'
 
-export default function Form({ data, setData }) {
+export default function Form({ handleFormData, handleSubmit, formData }) {
 
-    const handleFormData = e => {
-        const { name, value } = e.target;
-        setData({
-            ...data,
-            [name]: value
-        });
-        console.log(data);
-    }
   return (
     <div className='my-4'>
         <p>
-            <input type='text' placeholder='Enter your name' name='name'  className='border' onChange={ handleFormData }/>
+            <input type='text'
+            placeholder='Enter your name'
+            name='name'
+            className='border'
+            onChange={ handleFormData }
+            value={ formData.name }
+            />
         </p>
         <p>
-            <input type='text' placeholder='Enter your address' name='address'  className='border' onChange={ handleFormData }/>
+            <input type='text'
+            placeholder='Enter your address'
+            name='address'
+            className='border'
+            onChange={ handleFormData }
+            value={ formData.address }
+            />
         </p>
         <p>
-            <input type='date' name='date' className='border' onChange={ handleFormData }/>
+            <input type='date'
+            name='date'
+            className='border'
+            onChange={ handleFormData }
+            value={ formData.date }
+            />
         </p>
         <p>
-            <select className='border' onChange={ handleFormData }>
+            <select className='border' onChange={ handleFormData } value={ formData.conduct } name='conduct'>
                 <option>Học lực</option>
                 <option>Giỏi</option>
                 <option>Khá</option>
@@ -30,7 +39,7 @@ export default function Form({ data, setData }) {
             </select>
         </p>
         <p>
-            <button className='btn px-4 py-2 bg-blue-400 text-white'>Submit</button>
+            <button className='btn px-4 py-2 bg-blue-400 text-white' onClick={ handleSubmit }>{ formData.id ? 'Update' : 'Submit' }</button>
         </p>
     </div>
   )
