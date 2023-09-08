@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import Table from './Table';
 
 export default function Form() {
@@ -27,6 +27,9 @@ export default function Form() {
     });
 
     const [users, setUsers] = useState([]);
+
+    const inputRef = useRef('');
+    const [searchData, setSearchData] = useState('');
     const handleGetValue = e => {
         const { name, value, checked, type } = e.target;
         setFormData({
@@ -41,6 +44,7 @@ export default function Form() {
             ...formData,
             avatar: files[0]
         })
+        value = '';
     }
 
     const handleSubmit = () => {
@@ -71,9 +75,26 @@ export default function Form() {
         setFormData(user);
     }
 
+    const handleSearch = () => {
+        const { value } = inputRef.current;
+        setSearchData(value);
+    }
+
   return (
     <>
         <div>
+            <p className='my-6 text-center'>
+                <input type='text'
+                ref={ inputRef }
+                className='border'
+                placeholder='Search here...'
+                />
+                <button className='bg-violet-400 text-white px-4 py-1 rounded'
+                onClick={ handleSearch }
+                >
+                    Search
+                </button>
+            </p>
             <p>
                 Name:
                 <input type='text'
@@ -142,7 +163,7 @@ export default function Form() {
             </p>
         </div>
         <Table
-        data={ users }
+        data={ users.filter(item => item.name.includes(searchData)) }
         handleDelete={ handleDelete }
         handleUpdate={ handleUpdate }
         />
