@@ -36,7 +36,7 @@ export default function Form() {
     }
 
     const handleGetFile = e => {
-        const { files } = e.target;
+        const { value, files } = e.target;
         files[0] && setFormData({
             ...formData,
             avatar: files[0]
@@ -113,8 +113,16 @@ export default function Form() {
             <p>
                 Gender:
                 <br/>
-                <input type='radio' name='gender' onChange={ handleGetValue } value='Male' checked={ formData.gender }/> Male &nbsp;
-                <input type='radio' name='gender' onChange={ handleGetValue } value='Female' checked={ formData.gender }/> Female
+                <input type='radio'
+                name='gender'
+                onChange={ handleGetValue }
+                value='Male'
+                checked={ formData.gender === 'Male' }/> Male &nbsp;
+                <input type='radio'
+                name='gender'
+                onChange={ handleGetValue }
+                value='Female'
+                checked={ formData.gender === 'Female' }/> Female
             </p>
             <p>
                 Thể thao:

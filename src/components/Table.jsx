@@ -12,6 +12,7 @@ export default function (props) {
                         <th>Name</th>
                         <th>Address</th>
                         <th>Avatar</th>
+                        <th>Gender</th>
                         <th>Married</th>
                         <th>Favorite</th>
                         <th>Action</th>
@@ -26,6 +27,7 @@ export default function (props) {
                             <td>
                                 { item.avatar && <img src={ URL.createObjectURL( item.avatar ) } width={120}/> }
                             </td>
+                            <td>{ item.gender }</td>
                             <td>{ item.isMarried ? 'Married' : 'Single' }</td>
                             <td>{ item.favorite }</td>
                             <td>
