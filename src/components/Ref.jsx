@@ -11,6 +11,8 @@ export default function Ref() {
     //+ những task làm việc vệc với DOM thì sử dụng useRef
     //+ khi sử dụng state giá trị thay đổi thì components sẽ được render lại
     //+ khi sử dụng ref giá trị thay đổi thì components sẽ không được render lại
+    //+ useRef là đồng bộ => khi ref thay đổi thì components không thay đổi
+    //+ useRef là bất đồng bộ => khi state thay đổi thì components render lại
 
     // const inputRef = useRef(null);
     // useEffect(() => {
