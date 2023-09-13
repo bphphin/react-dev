@@ -1,9 +1,9 @@
 import React from 'react'
-import UseEffect from './components/useEffect';
-import ProductList from './components/products/ProductList';
+import Users from './components/Users';
 export default function App() {
     return (
-        // <UseEffect/>
-        <ProductList/>
+        <>
+            <Users/>
+        </>
     )
 }
