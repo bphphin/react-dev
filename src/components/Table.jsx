@@ -2,7 +2,7 @@ import React from 'react'
 import Paginate from './Paginate';
 
 export default function Table(props) {
-    const { data, getSkip } = props;
+    const { data, getSkip, skipPage } = props;
     const paginate = [];
 
     for (let i = 1; i <= data.total / data.limit; i++) {
@@ -57,7 +57,7 @@ export default function Table(props) {
                                                     { item.gender }
                                                 </td>
                                                 <td className="px-6 py-4">
-                                                    { item.company.name }
+                                                    { item.company?.name }
                                                 </td>
                                                 <td className="px-6 py-4">
                                                     <button
@@ -78,8 +78,9 @@ export default function Table(props) {
                             </table>
                         </div>
                         <Paginate
-                            paginate={paginate}
+                            paginate={ paginate }
                             handleSkip={ handleSkip }
+                            skipPage={ skipPage }
                         />
                     </>
                     :

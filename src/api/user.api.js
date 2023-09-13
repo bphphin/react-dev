@@ -2,8 +2,8 @@ import API from "./api";
 
 const userAPI = {
 
-    getAll(skip) {
-        const url = `users?limit=10&skip=${skip}`;
+    getAll(skip, select) {
+        const url = `users?limit=10&skip=${skip}&select=${select}`;
         return API.get(url);
     },
 

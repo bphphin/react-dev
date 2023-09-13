@@ -1,17 +1,13 @@
 import React from 'react'
 import Select from 'react-select';
 
-export default function Search() {
-
-    const options = [
-        { value: 'chocolate', label: 'Chocolate' },
-        { value: 'strawberry', label: 'Strawberry' },
-        { value: 'vanilla', label: 'Vanilla' }
-    ];
+export default function Search({ options,handleGetValueSelect }) {
 
     return (
         <>
-            <Select options={options} isMulti />
+            <Select options={options} isMulti
+            onChange={ handleGetValueSelect }
+            />
             <div className='text-center my-5'>
                 <input
                     type='text'

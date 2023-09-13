@@ -4,6 +4,13 @@ import Table from './Table';
 import userAPI from '../api/user.api';
 export default function Users() {
 
+    const options = [
+        { value: 'username', label: 'Username' },
+        { value: 'email', label: 'Email' },
+        { value: 'age', label: 'Age' },
+        { value: 'gender', label: 'Gender' },
+    ];
+
     const [listUsers, setListUsers] = useState({
         limit:0,
         skip:0,
@@ -11,10 +18,10 @@ export default function Users() {
         users:[]
     });
 
-    const [skipPage, setSkipPage] = useState(0);
-
+    const [skipPage, setSkipPage] = useState(1);
+    const [selectValue, setSelectValue] = useState('');
     const all = async () => {
-        const { limit, skip, total, users } = (await userAPI.getAll(skipPage)).data;
+        const { limit, skip, total, users } = (await userAPI.getAll(skipPage, selectValue)).data;
         setListUsers({
             ...listUsers,
             limit,
@@ -25,23 +32,27 @@ export default function Users() {
     }
 
     const getSkip = skip => {
-        // setListUsers({
-        //     ...listUsers,
-        //     skip
-        // });
         setSkipPage(skip);
+    }
+
+    const handleGetValueSelect = e => {
+        const value = e.map(item => item.value).join();
+        setSelectValue(value);
     }
 
     useEffect(() => {
         all();
-    }, [skipPage]);
-    console.log(skipPage);
+    }, [skipPage, selectValue]);
     return (
         <>
-            <Search />
+            <Search
+                options={options}
+                handleGetValueSelect={handleGetValueSelect}
+            />
             <Table
                 data={listUsers}
-                getSkip={ getSkip }
+                getSkip={getSkip}
+                skipPage={ skipPage }
             />
         </>
     )
