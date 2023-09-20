@@ -2,7 +2,14 @@ import React from 'react'
 import Paginate from './Paginate';
 
 export default function Table(props) {
-    const { data, getSkip, skipPage } = props;
+    const {
+        data,
+        getSkip,
+        skipPage,
+        handleGetValueDetail,
+        userDetail,
+        handleDeleteUser
+    } = props;
     const paginate = [];
 
     for (let i = 1; i <= data.total / data.limit; i++) {
@@ -13,6 +20,11 @@ export default function Table(props) {
     }
     return (
         <>
+            <h2 className='text-xl'>User Detail</h2>
+            <p>Username: { userDetail.firstName }</p>
+            <p>BirthDate: { userDetail.birthDate }</p>
+            <p>Age: { userDetail.age }</p>
+            <p>Gender: { userDetail.gender }</p>
             {
                 data.users.length > 0 ?
                     <>
@@ -61,12 +73,14 @@ export default function Table(props) {
                                                 </td>
                                                 <td className="px-6 py-4">
                                                     <button
-                                                    className='px-1 py-2 bg-red-500 text-white rounded'
+                                                        className='px-1 py-2 bg-red-500 text-white rounded'
+                                                        onClick={ () => handleDeleteUser(item.id) }
                                                     >
                                                         Remove
                                                     </button> &nbsp;
                                                     <button
-                                                    className='px-1 py-2 bg-blue-400 text-white rounded'
+                                                        className='px-1 py-2 bg-blue-400 text-white rounded'
+                                                        onClick={ () => handleGetValueDetail(item.id) }
                                                     >
                                                         Detail
                                                     </button>

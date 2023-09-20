@@ -1,7 +1,12 @@
 import React from 'react'
 import Select from 'react-select';
 
-export default function Search({ options,handleGetValueSelect }) {
+export default function Search(props) {
+
+    const {
+        options,
+        handleGetValueSelect,
+    } = props;
 
     return (
         <>

@@ -12,11 +12,13 @@ export default function Users() {
     ];
 
     const [listUsers, setListUsers] = useState({
-        limit:0,
-        skip:0,
+        limit: 0,
+        skip: 0,
         total: 0,
-        users:[]
+        users: []
     });
+
+    const [userDetail, setUserDetail] = useState({});
 
     const [skipPage, setSkipPage] = useState(1);
     const [selectValue, setSelectValue] = useState('');
@@ -29,30 +31,45 @@ export default function Users() {
             total,
             users
         });
-    }
+    };
 
     const getSkip = skip => {
         setSkipPage(skip);
-    }
+    };
 
     const handleGetValueSelect = e => {
         const value = e.map(item => item.value).join();
         setSelectValue(value);
-    }
+    };
+
+    const handleGetValueDetail = async id => {
+        const { data } = await userAPI.getOne(id);
+        setUserDetail(data);
+    };
+
+    const handleDeleteUser = async id => {
+        const confirm = window.confirm(`Are you sure you want to delete this user`);
+        if (confirm) await userAPI.destroy(id);
+    };
+
 
     useEffect(() => {
         all();
     }, [skipPage, selectValue]);
+
     return (
         <>
             <Search
-                options={options}
-                handleGetValueSelect={handleGetValueSelect}
+                options={ options }
+                handleGetValueSelect={ handleGetValueSelect }
             />
             <Table
-                data={listUsers}
-                getSkip={getSkip}
+                data={ listUsers }
+                getSkip={ getSkip }
                 skipPage={ skipPage }
+                handleGetValueDetail={ handleGetValueDetail }
+                userDetail={ userDetail }
+                handleDeleteUser={ handleDeleteUser }
             />
         </>
     )
